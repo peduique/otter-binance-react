@@ -1,18 +1,21 @@
 import React from "react";
 
+import Cell from "../Cell";
+
+import { SOrder, SPriceCell } from "./styles";
+
 interface IOrder {
   order: Array<string>;
+  variant: string;
 }
-import Cell from "../Cell";
-import { SOrder } from "./styles";
 
-const Order: React.FC<IOrder> = ({ order }) => {
+const Order: React.FC<IOrder> = ({ order, variant }) => {
   const [price, amount] = order;
   const total = Number(price) * Number(amount);
 
   return (
     <SOrder>
-      <Cell>{price}</Cell>
+      <SPriceCell $variant={variant}>{price}</SPriceCell>
       <Cell>{amount}</Cell>
       <Cell>{total}</Cell>
     </SOrder>
