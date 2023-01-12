@@ -7,6 +7,6 @@ export const SOrder = styled.div`
 `;
 
 export const SPriceCell = styled(Cell)`
-  color: ${({ $variant }: { $variant: string }) =>
+  color: ${({ $variant }: { $variant?: string }) =>
     $variant === "asks" ? "red" : "blue"};
 `;

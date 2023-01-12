@@ -1,9 +1,11 @@
-import OrderBook from "./components/OrderBook";
+import React from "react";
+
+import OrderBookPage from "./pages/OrderBook";
 
 const App = () => {
   return (
     <div className="App">
-      <OrderBook />
+      <OrderBookPage />
     </div>
   );
 };
