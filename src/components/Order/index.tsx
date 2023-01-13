@@ -17,7 +17,7 @@ const Order: React.FC<IOrder> = ({ order, variant }) => {
     <SOrder>
       <SPriceCell $variant={variant}>{getNumberFormatted(price)}</SPriceCell>
       <SCell>{amount}</SCell>
-      <SCell>{price}</SCell>
+      <SCell>{total}</SCell>
     </SOrder>
   );
 };
