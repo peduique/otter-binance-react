@@ -1,5 +1,5 @@
 export const getNumberFormatted = (
-  value: number,
+  value: number | string,
   params: Intl.NumberFormatOptions = {}
 ): string =>
   new Intl.NumberFormat("en-US", {

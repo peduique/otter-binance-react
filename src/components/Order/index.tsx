@@ -1,10 +1,8 @@
 import React from "react";
 
-import Cell from "../Cell";
-
 import { getNumberFormatted } from "../../utils/numberFormatHelper";
 
-import { SOrder, SPriceCell } from "./styles";
+import { SOrder, SPriceCell, SCell } from "./styles";
 
 interface IOrder {
   order: Array<string>;
@@ -14,13 +12,12 @@ interface IOrder {
 const Order: React.FC<IOrder> = ({ order, variant }) => {
   const [price, amount] = order;
   const total = Number(price) * Number(amount);
-  const formattedPrice = getNumberFormatted(Number(price));
 
   return (
     <SOrder>
-      <SPriceCell $variant={variant}>{formattedPrice}</SPriceCell>
-      <Cell>{amount}</Cell>
-      <Cell>{total}</Cell>
+      <SPriceCell $variant={variant}>{getNumberFormatted(price)}</SPriceCell>
+      <SCell>{amount}</SCell>
+      <SCell>{price}</SCell>
     </SOrder>
   );
 };

@@ -3,7 +3,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-  /* background: #161A1E; */
+  background: #21222B;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -22,4 +22,8 @@ a:hover {
 
 body {
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
 }

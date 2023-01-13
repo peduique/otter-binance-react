@@ -13,5 +13,5 @@ export const SWrapper = styled.div`
 `;
 
 export const SLabel = styled.label`
-  font-weight: bold;
+  color: #fff;
 `;

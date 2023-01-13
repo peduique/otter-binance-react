@@ -1,5 +1,5 @@
-export const processOrders = ({ data }: any) => {
-  const { a: asks, b: bids } = data;
+export const processOrders = ({ data, ...rest }: any) => {
+  const { asks, bids } = data;
 
   return { asks, bids };
 };

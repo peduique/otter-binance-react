@@ -2,14 +2,14 @@ import React from "react";
 
 import Cell from "../../Cell";
 
-import { SOrder } from "../../Order/styles";
+import { SOrder, SHeaderCell } from "../../Order/styles";
 
 const OrderBookListHeader: React.FC = () => {
   return (
     <SOrder>
-      <Cell>Price</Cell>
-      <Cell>Amount</Cell>
-      <Cell>Total</Cell>
+      <SHeaderCell>Price</SHeaderCell>
+      <SHeaderCell>Amount</SHeaderCell>
+      <SHeaderCell>Total</SHeaderCell>
     </SOrder>
   );
 };
