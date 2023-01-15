@@ -14,7 +14,7 @@ const theme: TPriceTheme = {
   neutral: { color: "#fff" },
 };
 
-export const SWrapper = styled.p`
+export const SWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

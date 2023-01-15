@@ -20,15 +20,20 @@ import {
 
 const OrderBookPage: FC = () => {
   const { lastJsonMessage: orderBook, readyState: orderBookStatus } =
-    useWebSocket<TWSData>(`${WSS_BINANCE_URL}?streams=btcbusd@depth20`);
+    useWebSocket<TWSData>(`${WSS_BINANCE_URL}?streams=btcbusd@depth20`, {
+      shouldReconnect: () => true,
+    });
   const { lastJsonMessage: trade, readyState: tradeStatus } =
-    useWebSocket<TWSData>(`${WSS_BINANCE_URL}?streams=btcbusd@miniTicker`);
+    useWebSocket<TWSData>(`${WSS_BINANCE_URL}?streams=btcbusd@miniTicker`, {
+      shouldReconnect: () => true,
+    });
 
-  if (
-    ![orderBookStatus, tradeStatus].includes(ReadyState.OPEN) ||
-    !orderBook ||
-    !trade
-  ) {
+  const wsIsConnected =
+    [orderBookStatus, tradeStatus].includes(ReadyState.OPEN) &&
+    orderBook &&
+    trade;
+
+  if (!wsIsConnected) {
     return (
       <SContainer>
         <STitle>Order Book</STitle>
@@ -52,7 +57,10 @@ const OrderBookPage: FC = () => {
       </SHeader>
 
       <SOrderBookWrapper>
-        <OrderBookList orders={orderBook?.data?.asks} variant="asks" />
+        <OrderBookList
+          orders={orderBook?.data?.asks.reverse()}
+          variant="asks"
+        />
         <CurrentPrice {...trade?.data} />
         <OrderBookList orders={orderBook?.data?.bids} />
       </SOrderBookWrapper>

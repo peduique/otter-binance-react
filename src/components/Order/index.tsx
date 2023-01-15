@@ -15,9 +15,11 @@ const Order: React.FC<IOrder> = ({ order, variant }) => {
 
   return (
     <SOrder>
-      <SPriceCell $variant={variant}>{getFormattedNumber(price)}</SPriceCell>
+      <SPriceCell $variant={variant}>
+        {getFormattedNumber(Number(price))}
+      </SPriceCell>
       <SCell>{amount}</SCell>
-      <SCell>{total}</SCell>
+      <SCell>{total.toFixed(5)}</SCell>
     </SOrder>
   );
 };
