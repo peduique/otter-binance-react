@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import ArrowIcon from "../Icons/ArrowIcon";
+
 type TPriceTheme = {
   [key: string]: {
     color: string;
@@ -24,15 +26,30 @@ export const SWrapper = styled.p`
   margin: 0;
 `;
 
-export const SCurrentPrice = styled.div`
-  font-size: 20px;
-
-  ${({ $variant }: { $variant: string }) => ({
-    ...theme[$variant as keyof TPriceTheme],
-  })}
-`;
-
 export const SPreviousPrice = styled.div`
   font-size: 12px;
   color: #888;
 `;
+
+export const SArrowIcon = styled(ArrowIcon)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const SCurrentPrice = styled.div(
+  ({ $variant }: { $variant: string }) => ({
+    ...theme[$variant as keyof TPriceTheme],
+
+    display: "flex",
+    alignItems: "center",
+    fontSize: "20px",
+
+    ...($variant === "positive" && {
+      [SArrowIcon]: { transform: `rotate(180deg)` },
+    }),
+
+    ...($variant === "neutral" && {
+      [SArrowIcon]: { display: "none" },
+    }),
+  })
+);
