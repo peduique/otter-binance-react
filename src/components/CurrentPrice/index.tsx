@@ -1,28 +1,31 @@
-import React, { FC } from "react";
-import { IStreamTradePrice } from "../../pages/OrderBook/types";
-import { getNumberFormatted } from "../../utils/numberFormatHelper";
+import React, { FC, memo } from "react";
 
+import { IStreamTradePrice } from "../../pages/OrderBook/types";
+import { getFormattedNumber } from "../../utils/numberFormatHelper";
 import { SWrapper, SCurrentPrice, SPreviousPrice } from "./styles";
 
 type TCurrentPrice = Pick<IStreamTradePrice["data"], "c" | "o">;
 
-const CurrentPrice: FC<TCurrentPrice> = ({ o: open, c: close }) => {
-  const handleVariant = () => {
-    if (Number(open) < Number(close)) return "negative";
-    if (Number(open) > Number(close)) return "positive";
-    return "neutral";
-  };
+const CurrentPrice: FC<TCurrentPrice> = ({ o, c }) => {
+  const openPrice = Number(o);
+  const closePrice = Number(c);
 
   return (
     <SWrapper>
-      <SCurrentPrice $variant={handleVariant()}>
-        {getNumberFormatted(close)}
+      <SCurrentPrice $variant={getVariant(openPrice, closePrice)}>
+        {getFormattedNumber(closePrice)}
       </SCurrentPrice>
       <SPreviousPrice>
-        {getNumberFormatted(open, { style: "currency", currency: "USD" })}
+        {getFormattedNumber(openPrice, { style: "currency", currency: "USD" })}
       </SPreviousPrice>
     </SWrapper>
   );
 };
 
-export default CurrentPrice;
+export default memo(CurrentPrice);
+
+function getVariant(openPrice: number, closePrice: number): string {
+  if (openPrice < closePrice) return "negative";
+  if (openPrice > closePrice) return "positive";
+  return "neutral";
+}

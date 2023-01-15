@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getNumberFormatted } from "../../utils/numberFormatHelper";
+import { getFormattedNumber } from "../../utils/numberFormatHelper";
 
 import { SOrder, SPriceCell, SCell } from "./styles";
 
@@ -15,7 +15,7 @@ const Order: React.FC<IOrder> = ({ order, variant }) => {
 
   return (
     <SOrder>
-      <SPriceCell $variant={variant}>{getNumberFormatted(price)}</SPriceCell>
+      <SPriceCell $variant={variant}>{getFormattedNumber(price)}</SPriceCell>
       <SCell>{amount}</SCell>
       <SCell>{total}</SCell>
     </SOrder>
