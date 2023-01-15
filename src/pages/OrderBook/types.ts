@@ -1,3 +1,5 @@
+import { WebSocketHook } from "react-use-websocket/dist/lib/types";
+
 export interface IStreamOrderBook {
   data: {
     lastUpdateId: string;
@@ -9,17 +11,19 @@ export interface IStreamOrderBook {
 
 export interface IStreamTradePrice {
   data: {
-    E: number;
-    M: boolean;
-    T: number;
-    a: number;
-    b: number;
     e: string;
-    m: boolean;
-    p: string;
-    q: string;
+    E: number;
     s: string;
-    t: number;
+    c: string;
+    o: string;
+    h: string;
+    l: string;
+    v: string;
+    q: string;
   };
   stream: string;
 }
+
+export type TWSData = WebSocketHook["lastJsonMessage"] &
+  IStreamTradePrice &
+  IStreamOrderBook;

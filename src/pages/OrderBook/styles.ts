@@ -36,12 +36,3 @@ export const SCoinTitle = styled.h2`
   color: #fff;
   margin: 0;
 `;
-
-export const SCurrentPrice = styled.p`
-  background: #191a20;
-  font-size: 20px;
-  font-weight: bold;
-  padding: 15px;
-  color: #fff;
-  margin: 0;
-`;
