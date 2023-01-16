@@ -12,7 +12,7 @@ interface IOrderBookList {
 
 const OrderBookList: FC<IOrderBookList> = ({ orders, variant }) => {
   return (
-    <SOrderBookList>
+    <SOrderBookList data-testid="order-book-list">
       {variant === "asks" && <OrderBookListHeader />}
       {orders.map((order: Array<number>, index: number) => (
         <Order key={index} order={order} variant={variant} />
