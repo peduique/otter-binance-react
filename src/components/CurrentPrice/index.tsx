@@ -13,11 +13,14 @@ const CurrentPrice: FC<TCurrentPrice> = ({ o, c }) => {
 
   return (
     <SWrapper>
-      <SCurrentPrice $variant={getVariant(openPrice, closePrice)}>
+      <SCurrentPrice
+        $variant={getVariant(openPrice, closePrice)}
+        data-testid="close-price"
+      >
         {getFormattedNumber(closePrice)}
         <SArrowIcon />
       </SCurrentPrice>
-      <SPreviousPrice>
+      <SPreviousPrice data-testid="open-price">
         {getFormattedNumber(openPrice, { style: "currency", currency: "USD" })}
       </SPreviousPrice>
     </SWrapper>

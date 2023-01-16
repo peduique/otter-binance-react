@@ -11,15 +11,15 @@ interface IOrder {
 
 const Order: React.FC<IOrder> = ({ order, variant }) => {
   const [price, amount] = order;
-  const total = Number(price) * Number(amount);
+  const total = price * amount;
 
   return (
     <SOrder>
-      <SPriceCell $variant={variant}>
-        {getFormattedNumber(Number(price))}
+      <SPriceCell $variant={variant} data-testid="price">
+        {getFormattedNumber(price)}
       </SPriceCell>
-      <SCell>{amount.toFixed(5)}</SCell>
-      <SCell>{total.toFixed(5)}</SCell>
+      <SCell data-testid="amount">{amount.toFixed(5)}</SCell>
+      <SCell data-testid="total">{total.toFixed(5)}</SCell>
     </SOrder>
   );
 };

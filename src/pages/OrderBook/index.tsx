@@ -48,10 +48,12 @@ const OrderBookPage: FC = () => {
 
   return (
     <SContainer>
-      <STitle data-testid="order-book-title">Order Book</STitle>
+      <STitle>Order Book</STitle>
 
       <SHeader>
-        <SCoinTitle>{trade?.data?.s}</SCoinTitle>
+        <SCoinTitle data-testid="order-book-coin-title">
+          {trade?.data?.s}
+        </SCoinTitle>
         <Select
           label="Decimals"
           options={ORDER_BOOK_DECIMALS}
