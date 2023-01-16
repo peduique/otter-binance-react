@@ -48,7 +48,7 @@ const OrderBookPage: FC = () => {
 
   return (
     <SContainer>
-      <STitle>Order Book</STitle>
+      <STitle data-testid="order-book-title">Order Book</STitle>
 
       <SHeader>
         <SCoinTitle>{trade?.data?.s}</SCoinTitle>
