@@ -6,16 +6,15 @@ import OrderBookListHeader from "./Header";
 import { SOrderBookList } from "./styles";
 
 interface IOrderBookList {
-  orders: any[];
+  orders: number[][];
   variant?: string;
 }
 
 const OrderBookList: FC<IOrderBookList> = ({ orders, variant }) => {
   return (
     <SOrderBookList>
-      <OrderBookListHeader />
-
-      {orders.map((order: Array<string>, index: number) => (
+      {variant === "asks" && <OrderBookListHeader />}
+      {orders.map((order: Array<number>, index: number) => (
         <Order key={index} order={order} variant={variant} />
       ))}
     </SOrderBookList>

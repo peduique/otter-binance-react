@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
 import OrderBookList from "../../components/OrderBookList";
@@ -7,8 +7,8 @@ import Loading from "../../components/Loading";
 import CurrentPrice from "../../components/CurrentPrice";
 
 import { WSS_BINANCE_URL } from "../../config/constants";
-
 import { ORDER_BOOK_DECIMALS } from "./constants";
+import { getFormattedOrders } from "./helper";
 import { TWSData } from "./types";
 import {
   SContainer,
@@ -19,6 +19,8 @@ import {
 } from "./styles";
 
 const OrderBookPage: FC = () => {
+  const [decimal, setDecimal] = useState(0.01);
+
   const { lastJsonMessage: orderBook, readyState: orderBookStatus } =
     useWebSocket<TWSData>(`${WSS_BINANCE_URL}?streams=btcbusd@depth20`, {
       shouldReconnect: () => true,
@@ -42,6 +44,8 @@ const OrderBookPage: FC = () => {
     );
   }
 
+  const { asks, bids } = getFormattedOrders(orderBook?.data, decimal);
+
   return (
     <SContainer>
       <STitle>Order Book</STitle>
@@ -52,17 +56,14 @@ const OrderBookPage: FC = () => {
           label="Decimals"
           options={ORDER_BOOK_DECIMALS}
           name="decimals"
-          onChange={(name, value) => console.log(name, value)}
+          onChange={(_, value) => setDecimal(Number(value))}
         />
       </SHeader>
 
       <SOrderBookWrapper>
-        <OrderBookList
-          orders={orderBook?.data?.asks.reverse()}
-          variant="asks"
-        />
+        <OrderBookList orders={asks} variant="asks" />
         <CurrentPrice {...trade?.data} />
-        <OrderBookList orders={orderBook?.data?.bids} />
+        <OrderBookList orders={bids} />
       </SOrderBookWrapper>
     </SContainer>
   );

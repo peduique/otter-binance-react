@@ -5,7 +5,7 @@ import { getFormattedNumber } from "../../utils/numberFormatHelper";
 import { SOrder, SPriceCell, SCell } from "./styles";
 
 interface IOrder {
-  order: Array<string>;
+  order: Array<number>;
   variant?: string;
 }
 
@@ -18,7 +18,7 @@ const Order: React.FC<IOrder> = ({ order, variant }) => {
       <SPriceCell $variant={variant}>
         {getFormattedNumber(Number(price))}
       </SPriceCell>
-      <SCell>{amount}</SCell>
+      <SCell>{amount.toFixed(5)}</SCell>
       <SCell>{total.toFixed(5)}</SCell>
     </SOrder>
   );
