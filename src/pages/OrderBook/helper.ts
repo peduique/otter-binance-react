@@ -3,7 +3,7 @@ import map from "lodash/map";
 
 import { IStreamOrderBook } from "./types";
 
-export const getOrdersByDecimal = (
+const formatOrdersByDecimal = (
   orders: string[][],
   decimal: number
 ): number[][] => {
@@ -22,13 +22,11 @@ export const getOrdersByDecimal = (
 };
 
 export const getFormattedOrders = (
-  data: IStreamOrderBook["data"],
+  { asks, bids }: IStreamOrderBook["data"],
   decimal: number
 ) => {
-  const { asks, bids } = data;
-
-  const asksFormatted = getOrdersByDecimal(asks, decimal);
-  const bidsFormatted = getOrdersByDecimal(bids, decimal);
+  const asksFormatted = formatOrdersByDecimal(asks, decimal);
+  const bidsFormatted = formatOrdersByDecimal(bids, decimal);
 
   return { asks: asksFormatted, bids: bidsFormatted };
 };

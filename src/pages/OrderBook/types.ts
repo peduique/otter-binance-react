@@ -2,7 +2,7 @@ import { WebSocketHook } from "react-use-websocket/dist/lib/types";
 
 export interface IStreamOrderBook {
   data: {
-    lastUpdateId: string;
+    lastUpdateId: string | number;
     asks: string[][];
     bids: string[][];
   };
